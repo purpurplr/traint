@@ -1,21 +1,8 @@
-// import * as template from './index.hbs';
-
-// If your code is inside of an HTML Import you'll need to change the above line to:
-// let tmpl = document.currentScript.ownerDocument.querySelector('#x-foo-from-template');
-// const checkboxTemplate = document.querySelector('#checkbox-template');
-// console.log(checkboxTemplate);
-//
-// customElements.define(
-//   'jm-checkbox',
-//   class extends HTMLElement {
-//     constructor() {
-//       super();
-//       let shadowRoot = this.attachShadow({ mode: 'open' });
-//       shadowRoot.appendChild(checkboxTemplate.content.cloneNode(true));
-//     }
-//   },
-// );
 import { CheckboxComponent } from './shared/components/checkbox/checkbox.component.js';
+
+import styles from './checkbox.css';
+
+console.log('bbbbbbbbb', styles);
 
 const data = {
   articles: [

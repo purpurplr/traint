@@ -1,6 +1,11 @@
+import { checkboxComponentStyles } from './checbox.component.styles.js';
+import styles from './checbox.component.styles.css';
+
+console.log('aaaaaaaaaaa', styles);
+
 let checkboxTemplate = document.createElement('template');
 checkboxTemplate.innerHTML = `
-<link rel="stylesheet" href="./shared/components/checkbox/checkbox.component.css" />
+<style>${checkboxComponentStyles}</style>
 <input id='one' type='checkbox' />
 <label for='one'>
   <span></span>

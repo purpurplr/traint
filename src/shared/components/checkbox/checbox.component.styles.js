@@ -1,4 +1,5 @@
-/*TODO refactor*/
+// TODO come up with a better way about the styles
+export const checkboxComponentStyles = `
 
 * {
   box-sizing: border-box;
@@ -77,17 +78,18 @@ input[type='checkbox']:checked + label > span:before {
     width: 0;
     height: 0;
     border-color: #212121;
-    transform: translate3d(0,0,0) rotate(45deg);
-  }
+  transform: translate3d(0,0,0) rotate(45deg);
+}
   33%{
     width: .2em;
     height: 0;
     transform: translate3d(0,0,0) rotate(45deg);
-  }
+}
   100%{
     width: .2em;
     height: .5em;
     border-color: #212121;
-    transform: translate3d(0,-.5em,0) rotate(45deg);
-  }
+  transform: translate3d(0,-.5em,0) rotate(45deg);
 }
+}
+`;
