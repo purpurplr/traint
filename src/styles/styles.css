@@ -1,0 +1,19 @@
+@import "./fonts.css";
+
+body {
+  font-family: 'Inter Light', 'Helvetica', sans-serif;
+}
+
+.container {
+  max-width: 1336px;
+  margin: auto;
+  padding: 1rem;
+}
+
+.header {
+  font-family: 'Montserrat Light', 'Helvetica', sans-serif;
+}
+
+.logo {
+  font-family: 'Machine Light', 'Courier', monospace;
+}
