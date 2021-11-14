@@ -1,7 +1,7 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 import path, { dirname } from 'path';
-import webpack from 'webpack';
+// import webpack from 'webpack';
 import { fileURLToPath } from 'url';
 
 const environment = {
@@ -18,21 +18,27 @@ export default (env) => {
 
   return {
     mode: isProd ? 'production' : 'development',
-    entry: path.resolve(__dirname, 'src', 'index.js'),
+    entry: path.resolve(__dirname, 'src', 'index.ts'),
     output: {
       filename: 'index.js',
       path: path.resolve(__dirname, 'dist'),
     },
     module: {
       rules: [
-        // {
-        //   test: /\.ts$/,
-        //   use: 'ts-loader',
-        //   exclude: /node_modules/,
-        // },
+        {
+          test: /\.ts$/,
+          use: 'ts-loader',
+          exclude: /node_modules/,
+        },
+        {
+          test: /\.css$/i,
+          include: [path.resolve(__dirname, 'src', 'web-components')],
+          type: 'asset/source',
+        },
         {
           test: /\.css$/i,
           use: ['style-loader', 'css-loader'],
+          exclude: [path.resolve(__dirname, 'src', 'web-components')],
         },
       ],
     },
@@ -45,7 +51,7 @@ export default (env) => {
       port: 9000,
     },
     resolve: {
-      extensions: ['.ts', '.js', '.css', '*'],
+      extensions: ['.ts', '.js', '.css'],
     },
     watchOptions: {
       aggregateTimeout: 300,
