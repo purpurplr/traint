@@ -1,10 +1,5 @@
-// const Section = {
-//   getRepresentation: (content: HTMLElement) => `
-//     <section class='section'>${content}</section>
-//   `,
-// };
 export const SectionComponent = {
-  getRepresentation: (headerText: string, content: HTMLElement | DocumentFragment): HTMLElement => {
+  getRepresentation: (headerText: string, ...content: (HTMLElement | DocumentFragment | undefined)[]): HTMLElement => {
     const sectionElement = document.createElement('section');
     const headerElement = document.createElement('h3');
 
@@ -12,7 +7,8 @@ export const SectionComponent = {
     headerElement.innerText = headerText;
 
     sectionElement.appendChild(headerElement);
-    sectionElement.appendChild(content);
+
+    content.filter(Boolean).forEach((item) => sectionElement.appendChild(item!));
 
     return sectionElement;
   },

@@ -1,23 +1,21 @@
-const styles = require('./checbox.web-component.css');
+import { Connectable } from '../bootstrap/web-component.interface';
 
-enum Keycode {
-  Space = '62',
-}
+const styles = require('./checbox.web-component.css');
+import { Keycode } from '../../models/keycode';
+import { WebComponent } from '../bootstrap/web-component.decorator';
 
 let checkboxTemplate = document.createElement('template');
 checkboxTemplate.innerHTML = `
 <style>${styles}</style>
-<label for='one'>
-  <span></span>
+<label class='checkbox-container'>
+  <div class='checkbox'></div>
   <slot></slot>
 </label>`;
 
-interface WebComponent {
-  connectedCallback?: () => void;
-  disconnectedCallback?: () => void;
-}
-
-class CheckboxWebComponent extends HTMLElement implements WebComponent {
+@WebComponent({ selector: 'jm-checkbox' })
+// @ts-ignore
+export class CheckboxWebComponent extends HTMLElement implements Connectable {
+  // TODO just an example. checkbox eventually must be implemented using just global styles
   // TODO upgrade property
   set checked(isChecked: boolean) {
     if (isChecked) this.setAttribute('checked', '');
@@ -64,9 +62,3 @@ class CheckboxWebComponent extends HTMLElement implements WebComponent {
     this.dispatchEvent(event);
   }
 }
-
-const defineComponent = () => customElements.define('jm-checkbox', CheckboxWebComponent);
-
-export const Checkbox = {
-  defineElement: defineComponent,
-};
