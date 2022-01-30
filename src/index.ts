@@ -12,6 +12,12 @@ import { LinkComponent } from './components/link/link.component';
 import { ColumnComponent } from './components/column/column.component';
 import { CheckboxWebComponent } from './web-components/checkbox/checkbox.web-component';
 import { defineWebComponents } from './web-components/bootstrap/web-component.bootstrap';
+import { Divider } from './models/divider.interface';
+import { defaultDividersData } from './data/default-dividers-data';
+import { DividerComponent } from './components/divider/divider.component';
+import { defaultNoteData } from './data/default-notes-data';
+import { Note } from './models/note.interface';
+import { NoteComponent } from './components/note/note.component';
 
 defineWebComponents([CheckboxWebComponent]);
 
@@ -24,7 +30,11 @@ document.body.appendChild(rootTemplate.content.cloneNode(true));
 const rootAnchor: HTMLElement = document.querySelector('#root-anchor')!;
 
 class TopicsDataController {
-  constructor(private model: TopicsSection[]) {
+  constructor(
+    private model: TopicsSection[],
+    private dividers: Divider[],
+    private notes: Note[],
+  ) {
     this.initEventListeners();
   }
 
@@ -35,6 +45,7 @@ class TopicsDataController {
         checkboxElement.dataset.id = topic.id;
         checkboxElement.innerText = topic.displayText;
         checkboxElement.checked = !!topic.done;
+        if (topic.className) checkboxElement.dataset.divider = topic.className;
         fragment.appendChild(checkboxElement);
         return fragment;
       }, document.createDocumentFragment());
@@ -50,12 +61,21 @@ class TopicsDataController {
 
       const sectionElement: HTMLElement = SectionComponent.getRepresentation(
         section.displayText,
+        section.noteId,
         learningResourcesElements,
         checkboxElements,
       );
       sectionElement.dataset.id = section.id;
 
       rootAnchor.appendChild(sectionElement);
+    });
+
+    this.dividers.forEach((divider: Divider) => {
+      DividerComponent.createRepresentation(divider);
+    });
+
+    this.notes.forEach((note: Note) => {
+      NoteComponent.createRepresentation(note);
     });
   }
 
@@ -78,5 +98,5 @@ class TopicsDataController {
   }
 }
 
-const controller = new TopicsDataController(topicsData);
+const controller = new TopicsDataController(topicsData, defaultDividersData, defaultNoteData);
 controller.render();

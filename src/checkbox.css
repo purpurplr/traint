@@ -27,7 +27,7 @@ body {
 /*}*/
 
 :host([checked]) .checkbox {
-  border: 0.6em solid var(--checkox-background);
+  border: 0.6em solid var(--checkbox-background);
   animation: shrink-bounce 200ms cubic-bezier(.4, .0, .23, 1);
 }
 

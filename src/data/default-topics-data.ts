@@ -79,7 +79,7 @@ export const defaultTopicsData: TopicsSection[] = [
       { id: 'syntax', displayText: 'Синтаксис, типы данных' },
       { id: 'basic-entities', displayText: 'Базовые конструкции: условные и логические операторы, циклы' },
       { id: 'declaration-types', displayText: 'Способы объявления переменных и функций' },
-      { id: 'data-methods', displayText: 'Методы объектов, массивов' },
+      { id: 'data-methods', displayText: 'Методы объектов, массивов', className: 'rd-divider' },
       { id: 'classes', displayText: `Конструкторы, классы, ключевое слово 'new'` },
       { id: 'prototypes', displayText: 'Прототипное наследование' },
       { id: 'closure', displayText: 'Замыкания, лексическое окружение, область видимости' },
@@ -107,6 +107,7 @@ export const defaultTopicsData: TopicsSection[] = [
   {
     id: 'angular',
     displayText: 'Angular',
+    noteId: 'one-framework-required',
     learningResources: [{ displayText: 'Документация Angular', url: 'https://angular.io/docs' }],
     topics: [
       { id: 'angular-entities', displayText: 'Основные составляющие Angular-приложения' },
@@ -136,7 +137,7 @@ export const defaultTopicsData: TopicsSection[] = [
       { id: 'router', displayText: 'Router' },
       { id: 'redux', displayText: 'Управление состоянием приложения, Redux' },
       { id: 'redux-thunk-saga', displayText: 'Redux Thunk / Redux Saga' },
-      { id: 'testing', displayText: 'Тестирование' },
+      { id: 'testing', displayText: 'Тестирование', className: 'lab-divider' },
     ],
   },
   {

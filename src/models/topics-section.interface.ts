@@ -5,6 +5,8 @@ export interface TopicsSection {
   id: string;
   displayText: string;
   topics: Topic[];
+  noteId?: string;
   optional?: boolean;
+  className?: string;
   learningResources?: LearningResource[];
 }
