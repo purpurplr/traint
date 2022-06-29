@@ -8,5 +8,6 @@
   "endOfLine": "lf",
   "bracketSpacing": true,
   "arrowParens": "always",
-  "quoteProps": "as-needed"
+  "quoteProps": "as-needed",
+  "htmlWhitespaceSensitivity": "ignore"
 }

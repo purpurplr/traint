@@ -1,87 +1,58 @@
-const environment = {
-  DEV: 'dev',
-  PROD: 'prod',
-};
-
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserJSPlugin = require('terser-webpack-plugin');
-const webpack = require('webpack');
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-module.exports = (env) => {
-  const ENV = env.NODE_ENV || environment.DEV;
-  const isDevelopment = ENV === environment.DEV;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
+export default (env) => {
   return {
-    mode: isDevelopment ? 'development' : 'production',
-    entry: path.resolve(__dirname, 'src', 'index.js'),
+    mode: env.production ? 'production' : 'development',
+    devtool: env.production ? undefined : 'source-map',
+    entry: path.resolve(__dirname, 'src', 'index.tsx'),
     output: {
       filename: 'index.js',
       path: path.resolve(__dirname, 'dist'),
+      clean: true,
     },
     module: {
       rules: [
-        // {
-        //   test: /\.ts?$/,
-        //   use: 'ts-loader',
-        //   exclude: /node_modules/,
-        // },
-        // {
-        //   test: /\.(ttf|eot|otf)$/,
-        //   loader: 'file-loader',
-        //   options: {
-        //     outputPath: 'assets/fonts',
-        //     name: isDevelopment ? '[name].[ext]' : '[contenthash].[ext]',
-        //   },
-        // },
-        // {
-        //   test: /\.(png|svg|jpg|gif)$/,
-        //   loader: 'file-loader',
-        //   options: {
-        //     outputPath: 'assets/images',
-        //     name: isDevelopment ? '[name].[ext]' : '[contenthash].[ext]',
-        //   },
-        // },
+        {
+          test: /\.(ts|tsx)$/,
+          exclude: /node_modules/,
+          use: ['ts-loader'],
+        },
+        {
+          test: /\.s[ac]ss$/i,
+          use: ['style-loader', 'css-loader', 'sass-loader'],
+        },
+        {
+          test: /\.(woff|woff2|eot|ttf|otf|ico)$/i,
+          type: 'asset/resource',
+        },
+        {
+          test: /\.svg/,
+          type: 'asset/inline',
+        },
       ],
     },
-    plugins: [
-      new HtmlWebpackPlugin({
-        title: 'Index template',
-        template: path.resolve(__dirname, 'src', 'index.html'),
-      }),
-
-      new HtmlWebpackPlugin({ filename: 'index.html', template: './src/index.html' }),
-      new MiniCssExtractPlugin(),
-      new CleanWebpackPlugin(),
-      new webpack.NoEmitOnErrorsPlugin(),
-    ],
+    plugins: [new HtmlWebpackPlugin({ template: './src/index.html', favicon: './src/assets/favicon.ico' })],
     devServer: {
-      contentBase: path.join(__dirname, 'dist'),
+      static: {
+        directory: path.join(__dirname, 'dist'),
+      },
       compress: true,
       port: 9000,
     },
-    optimization: {
-      namedModules: isDevelopment,
-      namedChunks: isDevelopment,
-      splitChunks: {
-        hidePathInfo: !isDevelopment,
-        minSize: isDevelopment ? 10000 : 30000,
-        maxAsyncRequests: isDevelopment ? Infinity : 5,
-        maxInitialRequests: isDevelopment ? Infinity : 3,
-      },
-      minimize: !isDevelopment,
-      minimizer: [new TerserJSPlugin({}), new OptimizeCssAssetsPlugin({})],
-      noEmitOnErrors: !isDevelopment,
-    },
     resolve: {
-      extensions: ['.tsx', '.ts', '.js', '.scss', '*'],
+      extensions: ['.tsx', '.ts', '.js', '.scss'],
+      plugins: [new TsconfigPathsPlugin()],
+      alias: {
+        styles: path.join(__dirname, 'src/app/styles'),
+      },
     },
-    devtool: isDevelopment ? 'source-map' : 'null',
-    watch: isDevelopment,
     watchOptions: {
       aggregateTimeout: 300,
     },

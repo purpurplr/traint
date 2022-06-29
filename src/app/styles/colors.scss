@@ -1,0 +1,35 @@
+// basic palette
+:root {
+  --color-basic-100: #ffffff;
+  --color-basic-200: #fbfbfc;
+  --color-basic-300: #fafbfb;
+  --color-basic-400: #9e9e9e;
+  --color-basic-500: #868686;
+  --color-basic-600: #545150;
+
+  --color-basic-800: #212121;
+  --color-basic-900: #0f1419;
+}
+
+// accents palette
+:root {
+  --color-accent-300: #ffeb3b;
+  --color-accent-400: #ffc800;
+}
+
+// application palette
+:root {
+  --color-background: var(--color-basic-300);
+  --color-background-content: var(--color-basic-200);
+
+  --color-text-basic: var(--color-basic-900);
+  --color-text-header: var(--color-basic-900);
+
+  --color-link: var(--color-basic-600);
+  --color-link-hover: var(--color-basic-500);
+  --color-link-active: var(--color-accent-400);
+
+  --color-border-inactive: var(--color-basic-400);
+  --color-marker-active: var(--color-basic-800);
+  --checkox-background: var(--color-accent-300);
+}

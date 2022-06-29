@@ -1,0 +1,66 @@
+.achievement {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.achievement__badge {
+  width: 2rem;
+}
+
+.achievement__message {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.achievement__message::before,
+.achievement__message::after {
+  content: '';
+  position: absolute;
+  border-bottom: 2px solid #ffcd15;
+  width: 2rem;
+}
+
+.achievement__message::before {
+  right: calc(100% + 0.2rem);
+}
+
+.achievement__message::after {
+  left: calc(100% + 0.6rem);
+}
+
+.achievement__text {
+  text-align: center;
+  font-weight: 700;
+  color: #efbc01;
+}
+
+.achievement > .achievement__text {
+  display: none;
+}
+
+@media screen and (max-width: 550px) {
+  .achievement__badge {
+    width: 1.5rem;
+  }
+
+  .achievement {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .achievement > .achievement__text {
+    display: block;
+  }
+
+  .achievement__message > .achievement__text {
+    display: none;
+  }
+
+  .achievement__message::after {
+    left: calc(100% + 0.2rem);
+  }
+}

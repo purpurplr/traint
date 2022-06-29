@@ -1,0 +1,15 @@
+.app-header {
+  font-size: 1.5em;
+  color: var(--color-text-basic);
+}
+
+.app-header__logo {
+  display: inline;
+  height: 0.9em;
+  margin-right: 0.6em;
+  vertical-align: baseline;
+}
+
+.app-header__text {
+  vertical-align: baseline;
+}

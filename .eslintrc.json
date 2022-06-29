@@ -1,0 +1,37 @@
+{
+  "root": true,
+  "ignorePatterns": ["/node_modules", "/dist"],
+  "plugins": ["autofix"],
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "settings": {
+    "react": {
+      "version": "17"
+    }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": ["tsconfig.json"],
+        "sourceType": "module"
+      },
+      "extends": [
+        "./.lint-configs/.eslint-javascript.json",
+        "./.lint-configs/.eslint-typescript.json",
+        "plugin:react/recommended",
+        "prettier"
+      ],
+      "rules": {
+        "react/react-in-jsx-scope": "off"
+      }
+    },
+    {
+      "files": ["*.js"],
+      "extends": ["./.lint-configs/.eslint-javascript.json", "prettier"]
+    }
+  ]
+}

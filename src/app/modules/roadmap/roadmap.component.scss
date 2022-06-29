@@ -1,0 +1,11 @@
+.roadmap__link {
+  display: block;
+}
+
+.roadmap__achievement {
+  margin: -0.5rem 0 0.5rem;
+
+  @media screen and (max-width: 550px) {
+    margin: 0 0 1rem;
+  }
+}

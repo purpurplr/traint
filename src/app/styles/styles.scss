@@ -1,0 +1,56 @@
+@use 'styles/fonts';
+@use 'styles/colors';
+
+html {
+  font-size: 17px;
+  letter-spacing: 0.015rem;
+}
+
+body {
+  background-color: var(--color-background);
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
+  margin: 0;
+
+  @media screen and (max-width: 424px) {
+    font-size: 14px;
+  }
+}
+
+.theme-root {
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+.app-link {
+  margin: 0 0 0.3em;
+  color: var(--color-link);
+
+  &:hover {
+    color: var(--color-link-hover);
+  }
+
+  &:active {
+    color: var(--color-link-active);
+  }
+}
+
+.app-header-content {
+  color: var(--color-text-header);
+}
+
+.container {
+  max-width: 800px;
+  padding: 0 2.5rem;
+  margin: 1rem auto;
+
+  @media screen and (max-width: 767px) {
+    padding: 0 1.5rem;
+  }
+
+  @media screen and (max-width: 424px) {
+    padding: 0 0.8rem;
+  }
+}
+
+// TODO стили починить
