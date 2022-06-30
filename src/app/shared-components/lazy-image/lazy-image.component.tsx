@@ -1,7 +1,7 @@
 import { HTMLAttributes } from 'preact/compat';
 import { JSX } from 'preact';
 import { useLayoutEffect, useState } from 'preact/hooks';
-import classNames from 'classnames';
+import clsx from 'clsx';
 
 import './lazy-image.component.scss';
 
@@ -17,7 +17,7 @@ export function LazyImage(props: HTMLAttributes<HTMLImageElement>): JSX.Element 
       {...props}
       src={props.src}
       alt={props.alt}
-      className={classNames(props.className, 'lazy-image', { 'lazy-image_faded': loading })}
+      className={clsx(props.className, 'lazy-image', { 'lazy-image_faded': loading })}
       loading="lazy"
       onLoad={() => setLoading(false)}
     />
