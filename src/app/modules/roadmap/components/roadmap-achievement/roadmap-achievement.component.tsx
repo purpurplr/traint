@@ -2,7 +2,7 @@ import { JSX } from 'preact';
 
 import badgeIcon from '@assets/icons/badge.svg';
 
-import { Milestone } from '../typings/milestone.type';
+import { Milestone } from '../../typings/milestone.type';
 import './roadmap-achievement.component.scss';
 
 export interface RoadmapAchievementProps {

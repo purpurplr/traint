@@ -4,19 +4,20 @@ import { useState } from 'preact/hooks';
 import { CheckboxComponent } from '@shared-components/checkbox/checkbox.component';
 import { CardComponent } from '@shared-components/card/card.component';
 
-import './topics-card.component.scss';
 import { RoadmapAchievement } from '../roadmap-achievement/roadmap-achievement.component';
-import { RoadmapItemType } from '../typings/roadmap-item-type.enum';
-import { RoadmapSection } from '../typings/topics-section.type';
-import { LearningResource } from '../typings/learning-resource.type';
-import { Topic } from '../typings/topic.type';
+import { RoadmapItemType } from '../../typings/roadmap-item-type.enum';
+import { RoadmapSection } from '../../typings/topics-section.type';
+import { LearningResource } from '../../typings/learning-resource.type';
+import { Topic } from '../../typings/topic.type';
 
-export interface TopicsCardProps {
+import './roadmap-card.component.scss';
+
+export interface RoadmapCardProps {
   section: RoadmapSection;
   checkTopic: (topicId: string, done: boolean) => void;
 }
 
-export const TopicsCard = ({ section, checkTopic }: TopicsCardProps): JSX.Element => {
+export function RoadmapCard({ section, checkTopic }: RoadmapCardProps): JSX.Element {
   const [iconLoading, setIconLoading] = useState(true);
 
   const cardHeader = (
@@ -30,13 +31,13 @@ export const TopicsCard = ({ section, checkTopic }: TopicsCardProps): JSX.Elemen
           onLoad={() => setIconLoading(false)}
         />
       )}
-      <h3 className="app-header-content topic-card-header__text">{section.title}</h3>
+      <h3 className="header topic-card-header__text">{section.title}</h3>
     </div>
   );
 
   const links: JSX.Element[] | undefined = section.learningResources?.map(
     (resource: LearningResource, index: number) => (
-      <a className="app-link roadmap__link" href={resource.url} key={index} target="_blank" rel="noreferrer">
+      <a className="link roadmap__link" href={resource.url} key={index} target="_blank" rel="noreferrer">
         {resource.displayText}
       </a>
     ),
@@ -67,4 +68,4 @@ export const TopicsCard = ({ section, checkTopic }: TopicsCardProps): JSX.Elemen
       <CardComponent header={cardHeader} body={cardBody} />
     </div>
   );
-};
+}

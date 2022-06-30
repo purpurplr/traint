@@ -8,6 +8,7 @@ export const DARK_THEME_CONFIG: ThemeConfig = {
     'color-basic-400': '#333333',
     'color-basic-600': '#3a3a3a',
     'color-basic-800': '#4f4f4f',
+    'color-basic-810': '#252525',
     'color-basic-900': '#818181',
     'color-basic-500': '#a1a1a1',
   },

@@ -4,6 +4,7 @@ export interface LogoIconComponentProps {
   className?: string;
 }
 
+// TODO move to assets so it can be cached
 export function LogoIconComponent({ className }: LogoIconComponentProps): JSX.Element {
   return (
     <svg

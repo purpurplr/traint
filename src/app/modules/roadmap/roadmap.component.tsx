@@ -3,15 +3,17 @@ import { useEffect, useState } from 'preact/hooks';
 import * as React from 'preact/compat';
 
 import { SpinnerComponent } from '@shared-components/spinner/spinner.component';
-import { TopicsCard } from '@roadmap/topics-card/topics-card.component';
 import { curry } from '@utils/curry.util';
 
+import { RoadmapCard } from './components/roadmap-card/roadmap-card.component';
+import { RoadmapAchievement } from './components/roadmap-achievement/roadmap-achievement.component';
 import { roadmapApiService } from './services/roadmap-api.service';
-import { RoadmapAchievement } from './roadmap-achievement/roadmap-achievement.component';
 import { RoadmapSection } from './typings/topics-section.type';
 import { RoadmapItemType } from './typings/roadmap-item-type.enum';
 import { Milestone } from './typings/milestone.type';
 import { useRoadmapState } from './hooks/use-roadmap.hook';
+
+import './roadmap.component.scss';
 
 export function RoadmapComponent(): JSX.Element {
   const [loading, setLoading] = useState(false);
@@ -29,17 +31,17 @@ export function RoadmapComponent(): JSX.Element {
 
   if (loading) return <SpinnerComponent />;
 
-  const cards = roadmap.map((section: RoadmapSection | Milestone) => {
+  const roadmapItems = roadmap.map((section: RoadmapSection | Milestone) => {
     if (section.type === RoadmapItemType.Milestone) {
       return (
-        <div className="roadmap__achievement">
+        <div className="roadmap__milestone">
           <RoadmapAchievement achievement={section} />
         </div>
       );
     }
 
-    return <TopicsCard key={section.id} section={section} checkTopic={checkTopic(section.id)} />;
+    return <RoadmapCard key={section.id} section={section} checkTopic={checkTopic(section.id)} />;
   });
 
-  return <main className="container roadmap">{cards}</main>;
+  return <main className="container roadmap">{roadmapItems}</main>;
 }

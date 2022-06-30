@@ -1,13 +1,12 @@
-@use 'styles/fonts';
-@use 'styles/colors';
+@use './variables/colors';
+@use './variables/breakpoints';
 
 html {
   font-size: 17px;
-  letter-spacing: 0.015rem;
+  letter-spacing: 0.02rem;
 }
 
 body {
-  background-color: var(--color-background);
   font-family: Roboto, sans-serif;
   font-weight: 300;
   margin: 0;
@@ -18,12 +17,22 @@ body {
 }
 
 .theme-root {
-  transition-property: background-color;
-  transition-duration: 0.5s;
+  background-color: var(--color-background);
 }
 
-.app-link {
-  margin: 0 0 0.3em;
+.theme-root,
+.theme-root *,
+.theme-root *::before,
+.theme-root *::after {
+  transition-property: background-color, color, box-shadow;
+  transition-duration: 0.15s;
+}
+
+.header {
+  color: var(--color-text-header);
+}
+
+.link {
   color: var(--color-link);
 
   &:hover {
@@ -35,22 +44,19 @@ body {
   }
 }
 
-.app-header-content {
-  color: var(--color-text-header);
-}
-
 .container {
   max-width: 800px;
   padding: 0 2.5rem;
   margin: 1rem auto;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: var(--breakpoint-tablet)) {
     padding: 0 1.5rem;
   }
 
-  @media screen and (max-width: 424px) {
+  @media screen and (max-width: var(--breakpoint-mobile)) {
     padding: 0 0.8rem;
   }
 }
 
 // TODO стили починить
+// TODO норм темную тему

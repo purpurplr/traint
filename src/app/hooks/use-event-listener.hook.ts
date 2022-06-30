@@ -3,7 +3,7 @@ import { useEffect, useLayoutEffect, useRef } from 'preact/hooks';
 
 declare global {
   interface WindowEventMap {
-    'local-storage': CustomEvent;
+    'traint-storage': CustomEvent;
   }
 }
 
@@ -46,9 +46,7 @@ export function useEventListener<
 
   useLayoutEffect(() => {
     const targetElement: T | Window = element?.current ?? window;
-
     const eventListener: typeof handler = (event) => savedHandler.current(event);
-
     targetElement.addEventListener(eventName, eventListener, options);
 
     return () => {

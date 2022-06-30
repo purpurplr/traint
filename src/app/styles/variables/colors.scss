@@ -8,6 +8,7 @@
   --color-basic-600: #545150;
 
   --color-basic-800: #212121;
+  --color-basic-810: #223c50; // TODO accents maybe
   --color-basic-900: #0f1419;
 }
 
@@ -21,6 +22,7 @@
 :root {
   --color-background: var(--color-basic-300);
   --color-background-content: var(--color-basic-200);
+  --color-shadow: var(--color-basic-810);
 
   --color-text-basic: var(--color-basic-900);
   --color-text-header: var(--color-basic-900);
@@ -31,5 +33,6 @@
 
   --color-border-inactive: var(--color-basic-400);
   --color-marker-active: var(--color-basic-800);
+  --color-spinner: var(--color-basic-800);
   --checkox-background: var(--color-accent-300);
 }

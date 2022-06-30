@@ -14,7 +14,7 @@
   transform: translate(-50%, -50%);
   width: 15px;
   height: 15px;
-  border: 2px solid black;
+  border: 2px solid var(--color-spinner);
   border-radius: 50%;
 }
 
@@ -36,7 +36,7 @@
 .spinner__blob_move {
   top: 0;
   animation: blob-spinner-mover 1s infinite ease-in;
-  background-color: black;
+  background-color: var(--color-spinner);
 }
 
 @keyframes blob-bottom {

@@ -3,18 +3,18 @@ import { DenormalizedTopicProgress, TopicProgress } from '@roadmap/typings/topic
 import { RoadmapItemType } from '@roadmap/typings/roadmap-item-type.enum';
 import { RoadmapSectionItem } from '@roadmap/typings/roadmap-section-item.type';
 
+export interface ProgressAdapter {
+  denormalizedProgress: DenormalizedTopicProgress;
+  getProgressFor: (sectionId: string, topicId: string) => TopicProgress | undefined;
+  actualizeRoadmap: (roadmap: Roadmap) => Roadmap;
+}
+
 function denormalizeProgress(progress: TopicProgress[]): DenormalizedTopicProgress {
   return progress.reduce((acc: DenormalizedTopicProgress, topic: TopicProgress) => {
     const section = acc[topic.sectionId] ?? {};
     acc[topic.sectionId] = { ...section, [topic.id]: topic };
     return acc;
   }, {});
-}
-
-export interface ProgressAdapter {
-  denormalizedProgress: DenormalizedTopicProgress;
-  getProgressFor: (sectionId: string, topicId: string) => TopicProgress | undefined;
-  actualizeRoadmap: (roadmap: Roadmap) => Roadmap;
 }
 
 export function progressAdapter(progress: TopicProgress[]): ProgressAdapter {
