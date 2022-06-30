@@ -1,0 +1,68 @@
+@use 'src/app/styles/for-screen';
+
+.roadmap-milestone {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  @include for-screen.tablet-vertical {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.roadmap-milestone__badge {
+  width: 2rem;
+
+  @include for-screen.tablet-vertical {
+    width: 1.5rem;
+  }
+}
+
+.roadmap-milestone__message {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    border-bottom: 2px solid #ffcd15;
+    width: 2rem;
+  }
+
+  &::before {
+    right: calc(100% + 0.2rem);
+  }
+
+  &::after {
+    left: calc(100% + 0.6rem);
+  }
+}
+
+.roadmap-milestone__text {
+  text-align: center;
+  font-weight: 700;
+  color: #efbc01;
+}
+
+.roadmap-milestone > .roadmap-milestone__text {
+  display: none;
+}
+
+@include for-screen.tablet-vertical {
+  .roadmap-milestone > .roadmap-milestone__text {
+    display: block;
+  }
+
+  .roadmap-milestone__message > .roadmap-milestone__text {
+    display: none;
+  }
+
+  .roadmap-milestone__message::after {
+    left: calc(100% + 0.2rem);
+  }
+}

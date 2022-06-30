@@ -1,7 +1,13 @@
+@use 'src/app/styles/for-screen';
+
 .roadmap__milestone {
   margin: -0.5rem 0 0.5rem;
 
-  @media screen and (max-width: 550px) {
+  @include for-screen.tablet-vertical {
     margin: 0 0 1rem;
   }
+}
+
+.roadmap__card {
+  margin-bottom: 1rem;
 }

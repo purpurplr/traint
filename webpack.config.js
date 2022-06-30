@@ -49,9 +49,6 @@ export default (env) => {
     resolve: {
       extensions: ['.tsx', '.ts', '.js', '.scss'],
       plugins: [new TsconfigPathsPlugin()],
-      alias: {
-        styles: path.join(__dirname, 'src/app/styles'),
-      },
     },
     watchOptions: {
       aggregateTimeout: 300,

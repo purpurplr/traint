@@ -1,10 +1,10 @@
 import { Fragment, JSX } from 'preact';
-import { useState } from 'preact/hooks';
 
 import { CheckboxComponent } from '@shared-components/checkbox/checkbox.component';
 import { CardComponent } from '@shared-components/card/card.component';
 
-import { RoadmapAchievement } from '../roadmap-achievement/roadmap-achievement.component';
+import { LazyImage } from '@shared-components/lazy-image/lazy-image.component';
+import { RoadmapMilestone } from '../roadmap-milestone/roadmap-milestone.component';
 import { RoadmapItemType } from '../../typings/roadmap-item-type.enum';
 import { RoadmapSection } from '../../typings/topics-section.type';
 import { LearningResource } from '../../typings/learning-resource.type';
@@ -18,26 +18,16 @@ export interface RoadmapCardProps {
 }
 
 export function RoadmapCard({ section, checkTopic }: RoadmapCardProps): JSX.Element {
-  const [iconLoading, setIconLoading] = useState(true);
-
   const cardHeader = (
-    <div className="topic-card-header">
-      {section.imageHref && (
-        <img
-          className={`topic-card-header__icon ${iconLoading ? 'faded-out' : ''}`}
-          loading="lazy"
-          src={section.imageHref}
-          alt="icon"
-          onLoad={() => setIconLoading(false)}
-        />
-      )}
-      <h3 className="header topic-card-header__text">{section.title}</h3>
+    <div className="roadmap-card__header">
+      <LazyImage className="roadmap-card__header-icon" src={section.imageHref} alt={section.title} />
+      <h3 className="header roadmap-card__header-text">{section.title}</h3>
     </div>
   );
 
   const links: JSX.Element[] | undefined = section.learningResources?.map(
     (resource: LearningResource, index: number) => (
-      <a className="link roadmap__link" href={resource.url} key={index} target="_blank" rel="noreferrer">
+      <a className="link roadmap-card__link" href={resource.url} key={index} target="_blank">
         {resource.displayText}
       </a>
     ),
@@ -45,7 +35,7 @@ export function RoadmapCard({ section, checkTopic }: RoadmapCardProps): JSX.Elem
 
   const topics: JSX.Element[] = section.items.map((item) => {
     if (item.type === RoadmapItemType.Milestone) {
-      return <RoadmapAchievement achievement={item} />;
+      return <RoadmapMilestone achievement={item} />;
     }
 
     const topic: Topic = item;
@@ -59,13 +49,9 @@ export function RoadmapCard({ section, checkTopic }: RoadmapCardProps): JSX.Elem
   const cardBody: JSX.Element = (
     <Fragment>
       {links && <div className="topics-card__links">{links}</div>}
-      <div>{topics}</div>
+      {<div>{topics}</div>}
     </Fragment>
   );
 
-  return (
-    <div className="roadmap__card">
-      <CardComponent header={cardHeader} body={cardBody} />
-    </div>
-  );
+  return <CardComponent header={cardHeader} body={cardBody} />;
 }

@@ -3,6 +3,7 @@ import { Theme } from './models/theme.type';
 import { themeService } from './theme.service';
 import { DEFAULT_THEME } from './configs/default-theme.config';
 
+// TODO fix flickering on reload
 export function useTheme(): [Theme, StateUpdater<Theme>] {
   const [theme, setTheme] = useState<Theme>(DEFAULT_THEME);
 

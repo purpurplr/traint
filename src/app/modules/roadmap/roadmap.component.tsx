@@ -6,7 +6,7 @@ import { SpinnerComponent } from '@shared-components/spinner/spinner.component';
 import { curry } from '@utils/curry.util';
 
 import { RoadmapCard } from './components/roadmap-card/roadmap-card.component';
-import { RoadmapAchievement } from './components/roadmap-achievement/roadmap-achievement.component';
+import { RoadmapMilestone } from './components/roadmap-milestone/roadmap-milestone.component';
 import { roadmapApiService } from './services/roadmap-api.service';
 import { RoadmapSection } from './typings/topics-section.type';
 import { RoadmapItemType } from './typings/roadmap-item-type.enum';
@@ -34,13 +34,17 @@ export function RoadmapComponent(): JSX.Element {
   const roadmapItems = roadmap.map((section: RoadmapSection | Milestone) => {
     if (section.type === RoadmapItemType.Milestone) {
       return (
-        <div className="roadmap__milestone">
-          <RoadmapAchievement achievement={section} />
+        <div className="roadmap__milestone" key={section.id}>
+          <RoadmapMilestone achievement={section} />
         </div>
       );
     }
 
-    return <RoadmapCard key={section.id} section={section} checkTopic={checkTopic(section.id)} />;
+    return (
+      <div className="roadmap__card" key={section.id}>
+        <RoadmapCard section={section} checkTopic={checkTopic(section.id)} />
+      </div>
+    );
   });
 
   return <main className="container roadmap">{roadmapItems}</main>;

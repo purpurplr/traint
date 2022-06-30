@@ -1,42 +1,27 @@
-.roadmap__card {
-  margin-bottom: 1rem;
-}
+@use 'src/app/styles/for-screen';
 
-.topic-card-header {
+.roadmap-card__header {
   display: flex;
   align-items: center;
   margin: 0.4rem 0 1.2rem;
 }
 
-.topic-card-header__icon {
+.roadmap-card__header-icon {
   width: 2rem;
   height: 2rem;
   margin-right: 0.7rem;
-  transition: opacity 0.1s;
-}
 
-.topic-card-header__text {
-  margin: 0;
-}
-
-.topics-card__links {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1.6rem;
-}
-
-@media screen and (max-width: 424px) {
-  .topic-card-header__icon {
+  @include for-screen.mobile {
     width: 1.3rem;
     height: 1.3rem;
     margin-right: 0.4rem;
   }
 }
 
-.faded-out {
-  opacity: 0;
+.roadmap-card__header-text {
+  margin: 0;
 }
 
-.roadmap__link {
+.roadmap-card__link {
   margin: 0 0 0.3em;
 }
