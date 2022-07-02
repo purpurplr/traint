@@ -34,7 +34,7 @@ export default (env) => {
         },
         {
           test: /\.svg/,
-          type: 'asset/inline',
+          use: ['preact-svg-loader'],
         },
       ],
     },
