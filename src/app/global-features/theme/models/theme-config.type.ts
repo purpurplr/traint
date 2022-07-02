@@ -7,11 +7,11 @@ export type ThemeConfig = Partial<{
     'color-basic-600': string;
     'color-basic-800': string;
     'color-basic-900': string;
-    'color-basic-810': string;
     'color-basic-500': string;
   }>;
   accentsPalette: Partial<{
     'color-accent-300': string;
     'color-accent-400': string;
+    'color-accent-900': string;
   }>;
 }>;

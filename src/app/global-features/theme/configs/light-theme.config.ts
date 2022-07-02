@@ -8,12 +8,12 @@ export const LIGHT_THEME_CONFIG: ThemeConfig = {
     'color-basic-400': '#9e9e9e',
     'color-basic-600': '#545150',
     'color-basic-800': '#212121',
-    'color-basic-810': '#223c50',
     'color-basic-900': '#0f1419',
     'color-basic-500': '#868686',
   },
   accentsPalette: {
     'color-accent-300': '#ffeb3b',
     'color-accent-400': '#ffc800',
+    'color-accent-900': 'rgba(34, 60, 80, 0.06)',
   },
 };
