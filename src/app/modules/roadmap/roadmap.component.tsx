@@ -1,6 +1,5 @@
 import { JSX } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
-import * as React from 'preact/compat';
 
 import { SpinnerComponent } from '@shared-components/spinner/spinner.component';
 import { curry } from '@utils/curry.util';
