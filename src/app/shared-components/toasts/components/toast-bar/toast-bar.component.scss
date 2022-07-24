@@ -1,0 +1,23 @@
+.toast {
+  display: flex;
+  align-items: center;
+  max-width: 350px;
+  padding: 8px 10px;
+  background: var(--color-background);
+  color: #363636;
+  will-change: transform;
+  box-shadow: 0 3px 10px var(--color-shadow);
+  pointer-events: auto;
+}
+
+.toast_type_success {
+  background-color: green;
+}
+
+.toast_type_error {
+  background-color: red;
+}
+
+.toast_type_message {
+  background-color: yellow;
+}
