@@ -1,15 +1,13 @@
-import { Curry } from 'ts-toolbelt/out/Function/Curry';
+import { F } from 'ts-toolbelt';
 
-type AnyFunction = (...args: any[]) => any; // eslint-disable-line @typescript-eslint/no-explicit-any
-
-export function curry<F extends AnyFunction>(func: F): Curry<F> {
-  return function curried(this: ThisParameterType<F>, ...args: unknown[]) {
-    if (args.length >= func.length) {
-      return func.apply(this, args) as unknown;
+export function curry<Fn extends F.Function>(fn: Fn): F.Curry<Fn> {
+  return function curried(this: ThisParameterType<Fn>, ...args: unknown[]) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args) as unknown;
     }
 
     return (...args2: unknown[]) => {
       return curried.apply(this, [...args, ...args2]);
     };
-  } as unknown as Curry<F>;
+  } as F.Curry<Fn>;
 }
