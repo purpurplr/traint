@@ -5,10 +5,12 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import clsx from 'clsx';
 
 import ArrowIcon from '@assets/icons/arrow.svg';
+import { resolveRenderable } from '@utils/react/resolve-renderable.util';
+import { Renderable } from '@typings/react/renderable.type';
 
 interface CollapseProps {
-  isOpen: boolean;
-  header: (arg: boolean) => ComponentChildren;
+  isOpen?: boolean;
+  header: Renderable<boolean>;
   expandIcon?: JSX.Element;
   expandIconPosition?: 'start' | 'end';
   children: ComponentChildren;
@@ -22,18 +24,17 @@ export function Collapse({
   children,
 }: CollapseProps): JSX.Element {
   const [height, setHeight] = useState(0);
-  const [isExpand, setExpand] = useState(isOpen);
+  const [isExpanded, setExpanded] = useState(isOpen);
 
   const expandedPanel = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const scrollHeight = expandedPanel.current?.scrollHeight as number;
-
-    setHeight(isExpand ? scrollHeight : 0);
-  }, [isExpand]);
+    const scrollHeight = expandedPanel.current?.scrollHeight ?? 0;
+    setHeight(isExpanded ? scrollHeight : 0);
+  }, [isExpanded]);
 
   const toggleExpand = (): void => {
-    setExpand(!isExpand);
+    setExpanded(!isExpanded);
   };
 
   return (
@@ -44,10 +45,10 @@ export function Collapse({
         })}
         onClick={toggleExpand}
       >
-        <span className={clsx('collapse__expand-icon', { rotate: isExpand })}>
+        <span className={clsx('collapse__expand-icon', { 'collapse__expand-icon_rotated': isExpanded })}>
           {expandIcon ?? <ArrowIcon className="default-arrow-icon" />}
         </span>
-        <div className="header__content">{header(isExpand)}</div>
+        <div className="header__content">{resolveRenderable(header, isExpanded)}</div>
       </header>
       <div className="collapse__panel" ref={expandedPanel} style={{ height }}>
         <div className="collapse__content">{children}</div>
