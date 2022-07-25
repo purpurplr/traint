@@ -5,11 +5,11 @@ $transition-duration: 0.4s;
   gap: 0.7rem;
   padding: 0.7rem 0;
   cursor: pointer;
+}
 
-  &.expand-icon_position_end {
-    flex-direction: row-reverse;
-    justify-content: space-between;
-  }
+.expand-icon_position_end {
+  flex-direction: row-reverse;
+  justify-content: space-between;
 }
 
 .collapse__expand-icon {
@@ -21,13 +21,13 @@ $transition-duration: 0.4s;
     transition: transform $transition-duration linear;
   }
 
-  &.rotate > * {
+  &_rotated > * {
     transform: rotate(180deg);
   }
+}
 
-  .default-arrow-icon * {
-    fill: var(--color-marker-active);
-  }
+.default-arrow-icon * {
+  fill: var(--color-marker-active);
 }
 
 .collapse__panel {
