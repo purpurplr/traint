@@ -1,0 +1,46 @@
+$transition-duration: 0.4s;
+
+.collapse__header {
+  @extend %flex-align-center;
+  gap: 0.7rem;
+  padding: 0.7rem 0;
+  cursor: pointer;
+}
+
+.expand-icon_position_end {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.collapse__expand-icon {
+  @extend %flex-align-center;
+
+  > * {
+    width: 1.2rem;
+    height: 1.2rem;
+    transition: transform $transition-duration linear;
+  }
+
+  &_rotated > * {
+    transform: rotate(180deg);
+  }
+}
+
+.default-arrow-icon * {
+  fill: var(--color-marker-active);
+}
+
+.collapse__panel {
+  overflow: hidden;
+  will-change: height;
+  transition: height $transition-duration cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+.collapse__content {
+  padding: 0.7rem 0.4rem;
+}
+
+%flex-align-center {
+  display: flex;
+  align-items: center;
+}

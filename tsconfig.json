@@ -18,6 +18,7 @@
     "lib": ["es2019", "dom"],
     "baseUrl": ".",
     "moduleResolution": "Node",
+    "isolatedModules": true,
     "paths": {
       "tslib": ["node_modules/tslib/tslib.d.ts"],
       "@assets/*": ["./src/assets/*"],
@@ -29,7 +30,7 @@
       "@shared-components/*": ["./src/app/shared-components/*"],
       "@services/*": ["./src/app/services/*"],
       "@typings/*": ["./src/app/typings/*"],
-      "@utils/*": ["./src/app/utils/*"],
+      "@utils/*": ["./src/app/utils/*"]
     }
   }
 }
