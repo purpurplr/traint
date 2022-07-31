@@ -14,9 +14,11 @@ import { useRoadmapState } from './hooks/use-roadmap.hook';
 
 import './roadmap.component.scss';
 
-export function RoadmapComponent(): JSX.Element {
+export function RoadmapComponent({ path }: { path: string }): JSX.Element {
   const [loading, setLoading] = useState(false);
   const { roadmap, setRoadmap, setTopicStatus } = useRoadmapState();
+
+  const isTreeView: boolean = path === 'tree';
 
   const checkTopic = curry(setTopicStatus);
 

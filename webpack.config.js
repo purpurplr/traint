@@ -1,4 +1,5 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 
 import path, { dirname } from 'path';
@@ -15,6 +16,7 @@ export default (env) => {
     output: {
       filename: 'index.js',
       path: path.resolve(__dirname, 'dist'),
+      publicPath: '/',
       clean: true,
     },
     module: {
@@ -38,11 +40,15 @@ export default (env) => {
         },
       ],
     },
-    plugins: [new HtmlWebpackPlugin({ template: './src/index.html', favicon: './src/assets/favicon.ico' })],
+    plugins: [
+      'analyze' in env && new BundleAnalyzerPlugin(),
+      new HtmlWebpackPlugin({ template: './src/index.html', favicon: './src/assets/favicon.ico' }),
+    ].filter(Boolean),
     devServer: {
       static: {
         directory: path.join(__dirname, 'dist'),
       },
+      historyApiFallback: true,
       compress: true,
       port: 9000,
     },
