@@ -1,5 +1,7 @@
 import { StateUpdater, useCallback, useEffect, useState } from 'preact/hooks';
+
 import { useEventListener } from '@hooks/use-event-listener.hook';
+import { resolveValue } from '@utils/resolve-value.util';
 
 // TODO strategy
 export function useLocalStorage<T>(key: string, initialValue: T): [T, StateUpdater<T>] {
@@ -16,9 +18,9 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, StateUpdat
   const [value, setValue] = useState<T>(readStoredValue);
 
   const setStoredValue: StateUpdater<T> = useCallback(
-    (valueToStore) => {
+    (update) => {
       try {
-        const newValue = valueToStore instanceof Function ? valueToStore(value) : valueToStore;
+        const newValue = resolveValue(update, value);
         window.localStorage.setItem(key, JSON.stringify(newValue));
         setValue(newValue);
         window.dispatchEvent(new Event('traint-storage'));

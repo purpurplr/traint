@@ -22,7 +22,7 @@ export default (env) => {
         {
           test: /\.(ts|tsx)$/,
           exclude: /node_modules/,
-          use: ['ts-loader'],
+          use: { loader: 'babel-loader' },
         },
         {
           test: /\.s[ac]ss$/i,
