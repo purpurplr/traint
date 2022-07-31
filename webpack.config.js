@@ -41,9 +41,9 @@ export default (env) => {
       ],
     },
     plugins: [
-      new BundleAnalyzerPlugin(),
+      'analyze' in env && new BundleAnalyzerPlugin(),
       new HtmlWebpackPlugin({ template: './src/index.html', favicon: './src/assets/favicon.ico' }),
-    ],
+    ].filter(Boolean),
     devServer: {
       static: {
         directory: path.join(__dirname, 'dist'),
