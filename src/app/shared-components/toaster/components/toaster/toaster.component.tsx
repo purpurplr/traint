@@ -1,16 +1,17 @@
 import { VNode } from 'preact';
 
+import { useExternalStore } from '@hooks/external-store';
 import { resolveRenderable } from '@utils/react/resolve-renderable.util';
-import { Toast } from '@shared-components/toasts/toaster.types';
+
+import { toasterStore } from '../../core/toaster.store';
+import { Toast } from '../../toaster.types';
 
 import { ToastBar } from '../toast-bar/toast-bar.component';
 import './toaster.component.scss';
 
-export interface ToasterProps {
-  toastList: Toast[];
-}
+export function Toaster(): VNode {
+  const { toastList } = useExternalStore(toasterStore);
 
-export function Toaster({ toastList }: ToasterProps): VNode {
   const pause = (): void => toastList.forEach(({ timer }) => timer.pause());
   const resume = (): void => toastList.forEach(({ timer }) => timer.resume());
 

@@ -17,10 +17,7 @@ export type ToastMessage = Renderable<Toast>;
 
 export type ToastOptions = Required<Pick<Toast, 'duration'>>;
 
-export interface ToasterOptions {
-  toastsLimit: number;
-  byType: Record<ToastType, ToastOptions>;
-}
+export type ToasterOptions = Record<ToastType, ToastOptions>;
 
 export type CookAToast = (message: ToastMessage, options?: ToastOptions) => Toast;
 

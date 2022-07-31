@@ -1,9 +1,9 @@
 import { VNode } from 'preact';
 
 import { resolveRenderable } from '@utils/react/resolve-renderable.util';
-import { Toast } from '@shared-components/toasts/toaster.types';
 
 import './toast-bar.component.scss';
+import { Toast } from '../../toaster.types';
 
 export function ToastBar({ toast }: { toast: Toast }): VNode {
   return (

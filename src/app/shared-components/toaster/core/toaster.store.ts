@@ -1,10 +1,11 @@
-import { ActionLibrary, Dispatcher } from '@typings/store/actions.type';
+import { buildExternalStore } from '@hooks/external-store/build-external-store.util';
+import { ActionLibrary } from '@typings/store/actions.type';
 import { ActionReducer } from '@typings/store/reducers.type';
 import { createReducer, on } from '@utils/store/create-reducer.util';
 import { props } from '@utils/store/action-config.util';
-import { useReducer } from 'preact/hooks';
-import { Toast } from '@shared-components/toasts/toaster.types';
 import { createAction } from '@utils/store/create-action.util';
+
+import { Toast } from '../toaster.types';
 
 export const toasterActions = {
   addToast: createAction('[Toaster] Add Toast', props<{ toast: Toast }>()),
@@ -15,6 +16,7 @@ export const toasterActions = {
 };
 
 export type ToasterActions = ActionLibrary<typeof toasterActions>;
+
 interface ToasterState {
   toastList: Toast[];
   toastsLimit: number;
@@ -51,11 +53,12 @@ const toasterReducer: ActionReducer<ToasterState, ToasterActions> = createReduce
   })),
 );
 
-export function useToasterStore(): [Toast[], Dispatcher<ToasterActions>] {
-  const [state, dispatch] = useReducer(toasterReducer, {
+const [toasterStore, toasterDispatcher] = buildExternalStore(
+  {
     toastList: [],
-    toastsLimit: 0,
-  });
+    toastsLimit: 10,
+  },
+  toasterReducer,
+);
 
-  return [state.toastList, dispatch];
-}
+export { toasterStore, toasterDispatcher };
