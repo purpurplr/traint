@@ -1,0 +1,38 @@
+$transition-duration: 0.4s;
+
+.tree {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 auto;
+  padding-left: 2rem;
+}
+
+.tree__item {
+  margin-top: 10px;
+}
+
+.tree__header {
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.tree__expand-icon {
+  display: flex;
+  align-items: center;
+
+  > * {
+    width: 1.2rem;
+    height: 1.2rem;
+    transition: transform $transition-duration linear;
+  }
+
+  &_rotated > * {
+    transform: rotate(180deg);
+  }
+}
+
+.default-arrow-icon * {
+  fill: var(--color-marker-active);
+}
