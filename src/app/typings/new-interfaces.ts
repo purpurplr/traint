@@ -55,13 +55,13 @@ interface RoadmapTopic extends RoadmapItemBase {
   children?: Exclude<RoadmapItem, RoadmapSection | RoadmapTopicGroup>[];
 }
 
-type Progress = {
+type RoadmapProgress = {
   id: string;
   done?: boolean;
   toggled?: boolean;
 }[];
 
-const progressMock: Progress = [
+const progressMock: RoadmapProgress = [
   { id: '2', done: true, toggled: true },
   { id: '5', done: true, toggled: true },
   { id: '9', done: true },
