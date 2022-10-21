@@ -1,10 +1,18 @@
 {
   "root": false,
-  "plugins": ["@typescript-eslint"],
-  "extends": ["plugin:@typescript-eslint/recommended", "plugin:@typescript-eslint/recommended-requiring-type-checking"],
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
   "rules": {
     "@typescript-eslint/array-type": "error",
-    "@typescript-eslint/class-literal-property-style": ["error", "fields"],
+    "@typescript-eslint/class-literal-property-style": [
+      "error",
+      "fields"
+    ],
     "@typescript-eslint/consistent-type-assertions": [
       "error",
       {
@@ -28,7 +36,6 @@
             "private-static-field",
             "private-static-get",
             "private-static-set",
-
             "public-abstract-field",
             "public-abstract-get",
             "public-abstract-set",
@@ -38,7 +45,6 @@
             "private-abstract-field",
             "private-abstract-get",
             "private-abstract-set",
-
             "public-decorated-field",
             "public-decorated-get",
             "public-decorated-set",
@@ -48,7 +54,6 @@
             "private-decorated-field",
             "private-decorated-get",
             "private-decorated-set",
-
             "public-instance-field",
             "public-instance-get",
             "public-instance-set",
@@ -58,17 +63,13 @@
             "private-instance-field",
             "private-instance-get",
             "private-instance-set",
-
             "constructor",
-
             "public-static-method",
             "protected-static-method",
             "private-static-method",
-
             "public-abstract-method",
             "protected-abstract-method",
             "private-abstract-method",
-
             "public-instance-method",
             "protected-instance-method",
             "private-instance-method"
@@ -122,9 +123,24 @@
     "@typescript-eslint/no-unsafe-call": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/no-magic-numbers": ["error", { "ignore": [0, 1, 2, -1] }],
+    "@typescript-eslint/no-magic-numbers": [
+      "error",
+      {
+        "ignore": [
+          0,
+          1,
+          2,
+          -1
+        ],
+        "ignoreNumericLiteralTypes": true
+      }
+    ],
     "no-shadow": "off",
-    "@typescript-eslint/no-shadow": ["error"],
-    "@typescript-eslint/no-empty-function": ["off"]
+    "@typescript-eslint/no-shadow": [
+      "error"
+    ],
+    "@typescript-eslint/no-empty-function": [
+      "off"
+    ]
   }
 }
