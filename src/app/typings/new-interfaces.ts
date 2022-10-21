@@ -6,7 +6,7 @@ type TopicRating = 1 | 2 | 3 | 4 | 5;
 enum RoadmapItemType {
   Section = 'section',
   Topic = 'topic',
-  TopicGroup = 'topic-group',
+  Group = 'group',
   Achievement = 'achievement',
 }
 
@@ -17,7 +17,7 @@ interface RoadmapItemBase {
   children?: RoadmapItemBase[];
 }
 
-type RoadmapItem = RoadmapAchievement | RoadmapSection | RoadmapTopicGroup | RoadmapTopic;
+type RoadmapItem = RoadmapAchievement | RoadmapSection | RoadmapGroup | RoadmapTopic;
 
 type Roadmap = RoadmapItem[]
 
@@ -44,15 +44,14 @@ interface RoadmapSection extends RoadmapItemBase {
   children?: Exclude<RoadmapItem, RoadmapSection>[];
 }
 
-interface RoadmapTopicGroup extends RoadmapItemBase {
-  type: RoadmapItemType.TopicGroup;
-  children?: Exclude<RoadmapItem, RoadmapSection>[];
+interface RoadmapGroup<T extends RoadmapSection | RoadmapTopic = RoadmapSection | RoadmapTopic> extends RoadmapItemBase {
+  type: RoadmapItemType.Group;
+  children?: T[];
 }
 
 interface RoadmapTopic extends RoadmapItemBase {
   type: RoadmapItemType.Topic;
   metadata: RoadmapItemMetadata;
-  children?: Exclude<RoadmapItem, RoadmapSection | RoadmapTopicGroup>[];
 }
 
 type RoadmapProgress = {
@@ -88,12 +87,12 @@ const mock: Roadmap = [
       },
       {
         id: '3',
-        type: RoadmapItemType.TopicGroup,
+        type: RoadmapItemType.Group,
         content: 'Topic Group 1',
         children: [
           {
             id: '4',
-            type: RoadmapItemType.TopicGroup,
+            type: RoadmapItemType.Group,
             content: 'Topic Group 2',
             children: [
               {
