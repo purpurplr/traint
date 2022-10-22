@@ -1,5 +1,3 @@
-import { DARK_THEME_CONFIG } from './configs/dark-theme.config';
-import { LIGHT_THEME_CONFIG } from './configs/light-theme.config';
 import { ThemeConfig } from './models/theme-config.type';
 import { Palette } from './models/palette.type';
 import { ThemeName } from './models/theme-name.enum';
@@ -17,18 +15,12 @@ function assignThemeByConfig(theme: ThemeConfig): void {
   palettes.forEach((palette) => assignPalette(palette));
 }
 
-function assignThemeByName(themeName: ThemeName): void {
-  switch (themeName) {
-    case ThemeName.Dark:
-      assignThemeByConfig(DARK_THEME_CONFIG);
-      break;
-    case ThemeName.Light:
-    default:
-      assignThemeByConfig(LIGHT_THEME_CONFIG);
-  }
+function detectBrowserTheme(): ThemeName {
+  const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  return isDark ? ThemeName.Dark : ThemeName.Light
 }
 
 export const themeService = {
   assignThemeByConfig,
-  assignThemeByName,
+  detectBrowserTheme
 };
