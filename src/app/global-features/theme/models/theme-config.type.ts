@@ -1,5 +1,5 @@
-export type ThemeConfig = Partial<{
-  basicPalette: Partial<{
+export type ThemeConfig = {
+  basicPalette: {
     'color-basic-100': string;
     'color-basic-200': string;
     'color-basic-300': string;
@@ -8,10 +8,10 @@ export type ThemeConfig = Partial<{
     'color-basic-800': string;
     'color-basic-900': string;
     'color-basic-500': string;
-  }>;
-  accentsPalette: Partial<{
+  };
+  accentsPalette: {
     'color-accent-300': string;
     'color-accent-400': string;
     'color-accent-900': string;
-  }>;
-}>;
+  };
+};

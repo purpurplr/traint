@@ -3,9 +3,9 @@ import RuIcon from '@assets/icons/russian.svg';
 import VideoIcon from '@assets/icons/video.svg';
 import ArticleIcon from '@assets/icons/articles.svg';
 
-import { FilterOptions } from '../typings/filter-options.type';
+import { FilterOption } from '../typings/roadmap-filters.type';
 
-export const filterOptions: FilterOptions = [
+export const filterOptions: FilterOption[] = [
   {
     labelText: 'на aнглийском',
     value: 'eng',

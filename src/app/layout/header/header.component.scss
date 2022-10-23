@@ -1,27 +1,27 @@
-.header {
+.app-header {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
 }
 
-.header__title {
+.app-header__title {
   font-size: 1.5em;
   color: var(--color-text-basic);
 }
 
-.header__logo {
+.app-header__logo {
   display: inline;
   height: 0.9em;
   margin-right: 0.6em;
   vertical-align: baseline;
 }
 
-.header__text {
+.app-header__text {
   vertical-align: baseline;
 }
 
-.header__user-panel {
+.app-header__user-panel {
   display: inline-flex;
   gap: 5px;
 }

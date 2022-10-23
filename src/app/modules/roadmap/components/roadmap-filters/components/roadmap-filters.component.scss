@@ -1,4 +1,4 @@
-.filters {
+.roadmap-filters {
   .MuiPaper-root {
     width: 220px;
     padding: 0 1rem;
@@ -6,4 +6,8 @@
     color: var(--color-text-basic);
     box-shadow: 0 0 30px 0 var(--color-shadow);
   }
+}
+
+.filters__icon {
+  color: var(--color-filters-icon);
 }

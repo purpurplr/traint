@@ -44,7 +44,8 @@ export function RoadmapCard({ section, checkTopic }: RoadmapCardProps): JSX.Elem
         key={topic.id}
         label={topic.displayText}
         checked={topic.done}
-        onChange={(e, target) => {
+        onChange={(e) => {
+          const target = e.target as HTMLInputElement;
           checkTopic(topic.id, target.checked);
         }}
       />

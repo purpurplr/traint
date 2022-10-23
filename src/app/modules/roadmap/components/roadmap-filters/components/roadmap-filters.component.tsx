@@ -1,4 +1,4 @@
-import './filters.component.scss';
+import './roadmap-filters.component.scss';
 
 import { MouseEventHandler } from 'react';
 
@@ -7,15 +7,12 @@ import { useState } from 'preact/compat';
 import { IconButton, Menu } from '@material-ui/core';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
-import { useTheme } from '@global-features/theme/use-theme.hook';
 import { Checkbox } from '@shared-components/checkbox/checkbox.component';
 
-import { filterOptions } from '../configs/filter-options.config';
-import { FilterValue } from '../typings/filter-options.type';
+import { filterOptions } from '../configs/roadmap-filters.config';
+import { FilterValue } from '../typings/roadmap-filters.type';
 
-export const Filters = (): JSX.Element => {
-  const { themeConfig } = useTheme();
-
+export const RoadmapFilters = (): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [filter, setFilter] = useState<Record<FilterValue, boolean>>({
     eng: false,
@@ -35,10 +32,10 @@ export const Filters = (): JSX.Element => {
   return (
     <>
       <IconButton aria-label="Filters" onClick={handleClick}>
-        <FilterListIcon htmlColor={themeConfig.basicPalette?.['color-basic-800']} />
+        <FilterListIcon className="filters__icon" />
       </IconButton>
       <Menu
-        className="filters"
+        className="roadmap-filters"
         open={Boolean(anchorEl)}
         anchorEl={anchorEl}
         onClose={handleClose}
@@ -65,7 +62,8 @@ export const Filters = (): JSX.Element => {
               </>
             }
             checked={filter[option.value]}
-            onChange={(e, target) => {
+            onChange={(e) => {
+              const target = e.target as HTMLInputElement;
               setFilter({ ...filter, [target.value]: target.checked });
             }}
           />

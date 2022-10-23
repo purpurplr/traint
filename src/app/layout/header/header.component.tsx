@@ -2,20 +2,19 @@ import './header.component.scss';
 
 import LogoIcon from '@assets/icons/logo.svg';
 import { ThemeToggler } from '@global-features/theme/components/theme-toggler.component';
-import { Auth } from '@global-features/authorization/components/auth.component';
-
-import { Filters } from '../../modules/filters/components/filters.component';
+import { User } from '@global-features/authorization/components/user.component';
+import { RoadmapFilters } from '@roadmap/components/roadmap-filters/components/roadmap-filters.component';
 
 export const Header = (): JSX.Element => (
-  <header className="header container">
-    <h1 className="header__title">
-      <LogoIcon className="header__logo" />
-      <span className="header__text">Карта знаний</span>
+  <header className="app-header container">
+    <h1 className="app-header__title">
+      <LogoIcon className="app-header__logo" />
+      <span className="app-header__text">Карта знаний</span>
     </h1>
-    <section className="header__user-panel">
+    <section className="app-header__user-panel">
       <ThemeToggler />
-      <Filters />
-      <Auth />
+      <RoadmapFilters />
+      <User />
     </section>
   </header>
 );
