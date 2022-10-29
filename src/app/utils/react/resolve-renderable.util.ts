@@ -1,11 +1,8 @@
-import { SimpleRenderable, Renderable } from '@typings/react/renderable.type';
+import { Renderable } from '@interfaces/react/renderable.type';
 import { resolveValue } from '@utils/resolve-value.util';
+import { ReactNode } from 'react';
 
-export function resolveRenderable<P>(renderable: Renderable<P>, props: P): SimpleRenderable;
-
-export function resolveRenderable<P>(renderable: Renderable<P> | undefined, props: P): SimpleRenderable | undefined;
-
-export function resolveRenderable<P>(renderable: Renderable<P> | undefined, props: P): SimpleRenderable | undefined {
+export function resolveRenderable<P>(renderable: Renderable<P>, props: P): ReactNode {
   if (renderable === undefined) return undefined;
   return resolveValue(renderable, props);
 }

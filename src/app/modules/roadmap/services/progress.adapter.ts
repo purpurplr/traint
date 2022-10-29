@@ -1,7 +1,7 @@
-import { Roadmap, RoadmapItem } from '@roadmap/typings/roadmap.type';
-import { DenormalizedTopicProgress, TopicProgress } from '@roadmap/typings/topic-progress.type';
-import { RoadmapItemType } from '@roadmap/typings/roadmap-item-type.enum';
-import { RoadmapSectionItem } from '@roadmap/typings/roadmap-section-item.type';
+import { Roadmap, RoadmapItem } from '@modules/roadmap/typings/roadmap.type';
+import { DenormalizedTopicProgress, TopicProgress } from '@modules/roadmap/typings/topic-progress.type';
+import { RoadmapItemType } from '@modules/roadmap/typings/roadmap-item-type.enum';
+import { RoadmapSectionItem } from '@modules/roadmap/typings/roadmap-section-item.type';
 
 export interface ProgressAdapter {
   denormalizedProgress: DenormalizedTopicProgress;

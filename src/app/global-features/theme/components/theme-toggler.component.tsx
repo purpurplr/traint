@@ -1,11 +1,12 @@
-import './theme-toggler.component.scss';
+import { IconButton } from '@mui/material';
 
-import { IconButton } from '@material-ui/core';
-import SunIcon from '@material-ui/icons/WbSunnyTwoTone';
-import MoonIcon from '@material-ui/icons/Brightness2';
+import SunIcon from '@mui/icons-material/WbSunnyTwoTone';
+import MoonIcon from '@mui/icons-material/Brightness2';
 
 import { useTheme } from '../use-theme.hook';
 import { ThemeName } from '../models/theme-name.enum';
+
+import './theme-toggler.component.scss';
 
 export const ThemeToggler = (): JSX.Element => {
   const { theme, setTheme } = useTheme();

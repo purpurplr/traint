@@ -1,16 +1,18 @@
-import { StateUpdater, useEffect } from 'preact/compat';
-
-import { useLocalStorage } from '@hooks/use-local-storage.hook';
+import { useLocalStorage } from '@hooks/local-storage.hook';
 import { ThemeName } from '@global-features/theme/models/theme-name.enum';
 import { ThemeConfig } from '@global-features/theme/models/theme-config.type';
 import { THEME_CONFIG_MAP } from '@global-features/theme/configs/themes-map.config';
-import { LocalStorageKeys } from '@typings/local-storage-keys.enum';
+import { LocalStorageKeys } from '@interfaces/local-storage-keys.enum';
+import { useEffect } from 'react';
 
 import { themeService } from './theme.service';
+import { StateUpdaterType } from '@interfaces/react/state-updater.type';
 
 interface ThemeAttributes {
   theme: ThemeName;
-  setTheme: StateUpdater<ThemeName>;
+
+  setTheme: StateUpdaterType<ThemeName>;
+
   themeConfig: ThemeConfig;
 }
 

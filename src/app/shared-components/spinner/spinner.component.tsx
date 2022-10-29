@@ -1,5 +1,3 @@
-import { JSX } from 'preact';
-
 import './spinner.component.scss';
 
 // TODO нормальный спиннер сделать блять

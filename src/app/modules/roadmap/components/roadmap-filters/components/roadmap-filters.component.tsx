@@ -1,11 +1,9 @@
 import './roadmap-filters.component.scss';
 
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, useState } from 'react';
 
-import { useState } from 'preact/compat';
-
-import { IconButton, Menu } from '@material-ui/core';
-import FilterListIcon from '@material-ui/icons/FilterList';
+import { IconButton, Menu } from '@mui/material';
+import FilterListIcon from '@mui/icons-material/FilterList';
 
 import { Checkbox } from '@shared-components/checkbox/checkbox.component';
 
@@ -47,7 +45,7 @@ export const RoadmapFilters = (): JSX.Element => {
           vertical: 'top',
           horizontal: 'center',
         }}
-        getContentAnchorEl={null}
+        // getContentAnchorEl={null}
         keepMounted
       >
         <p className="filters__title">Материалы:</p>
@@ -62,10 +60,7 @@ export const RoadmapFilters = (): JSX.Element => {
               </>
             }
             checked={filter[option.value]}
-            onChange={(e) => {
-              const target = e.target as HTMLInputElement;
-              setFilter({ ...filter, [target.value]: target.checked });
-            }}
+            onChange={({ target }) => setFilter({ ...filter, [target.value]: target.checked })}
           />
         ))}
       </Menu>

@@ -1,22 +1,15 @@
-import Router, { Route } from 'preact-router';
+import React from 'react';
+import { Outlet } from 'react-router-dom';
 
-import { Header } from '@layout/header/header.component';
-import { RoadmapComponent } from '@roadmap/roadmap.component';
-import { Toaster } from '@shared-components/toaster';
-import { Redirect } from '@global-features/router/redirect.component';
+import { AppHeader } from '@layouts/header/app-header.component';
+
+import './styles/styles.scss';
 
 export function App(): JSX.Element {
   return (
     <>
-      <Header />
-
-      <Router>
-        <Route path="/root/:path*" component={RoadmapComponent} />
-        <Route path="/auth" component={() => <p>auth</p>} />
-        <Redirect default to="/root" />
-      </Router>
-
-      <Toaster />
+      <AppHeader />
+      <Outlet />
     </>
   );
 }
