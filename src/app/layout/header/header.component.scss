@@ -1,4 +1,11 @@
 .app-header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-header__title {
   font-size: 1.5em;
   color: var(--color-text-basic);
 }
@@ -12,4 +19,9 @@
 
 .app-header__text {
   vertical-align: baseline;
+}
+
+.app-header__user-panel {
+  display: inline-flex;
+  gap: 5px;
 }

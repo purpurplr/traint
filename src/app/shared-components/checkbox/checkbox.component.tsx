@@ -1,20 +1,30 @@
-import { JSX } from 'preact';
-import clsx from 'clsx';
-
 import './checkbox.component.scss';
 
-export interface CheckboxComponentProps {
+import { VNode } from 'preact';
+import { JSXInternal } from 'preact/src/jsx';
+
+interface CheckboxProps {
+  value?: string;
+  name?: string;
+  label?: VNode | string;
   checked?: boolean;
-  onChange?: (checked: boolean) => void;
-  children: string | JSX.Element;
+  // TODO 'onChange' typing
+  onChange?: (e: JSXInternal.TargetedEvent<HTMLInputElement>) => void;
 }
 
-// TODO норм чекбоксы без сломанной анимации и с инпютами внутри
-export const CheckboxComponent = ({ checked, onChange, children }: CheckboxComponentProps): JSX.Element => {
+export const Checkbox = ({ name, value, label, checked, onChange }: CheckboxProps): JSX.Element => {
   return (
-    <label className="checkbox-container" onClick={() => onChange?.(!checked)}>
-      <div className={clsx('checkbox', { checkbox_checked: checked })} />
-      <span>{children}</span>
+    <label className="checkbox-container">
+      <input
+        className="checkbox__input"
+        type="checkbox"
+        name={name}
+        value={value}
+        onChange={onChange}
+        checked={checked}
+      />
+      <span className="checkbox__mark" aria-hidden="true" />
+      <span className="checkbox__label">{label}</span>
     </label>
   );
 };

@@ -1,5 +1,5 @@
-type Language = 'eng' | 'ru';
-type ContentType = 'article' | 'video';
+export type Language = 'eng' | 'ru';
+export type ContentType = 'article' | 'video';
 type Priority = 'minor' | 'medium' | 'critical';
 type TopicRating = 1 | 2 | 3 | 4 | 5;
 
@@ -19,12 +19,14 @@ interface RoadmapItemBase {
 
 type RoadmapItem = RoadmapAchievement | RoadmapSection | RoadmapGroup | RoadmapTopic;
 
-type Roadmap = RoadmapItem[]
+type Roadmap = RoadmapItem[];
 
-type TextOrLinks = string | ({
-  displayText: string;
-  link?: string;
-})[];
+type TextOrLinks =
+  | string
+  | {
+      displayText: string;
+      link?: string;
+    }[];
 
 interface RoadmapItemMetadata {
   priority: Priority;
@@ -44,7 +46,8 @@ interface RoadmapSection extends RoadmapItemBase {
   children?: Exclude<RoadmapItem, RoadmapSection>[];
 }
 
-interface RoadmapGroup<T extends RoadmapSection | RoadmapTopic = RoadmapSection | RoadmapTopic> extends RoadmapItemBase {
+interface RoadmapGroup<T extends RoadmapSection | RoadmapTopic = RoadmapSection | RoadmapTopic>
+  extends RoadmapItemBase {
   type: RoadmapItemType.Group;
   children?: T[];
 }
@@ -98,7 +101,9 @@ const mock: Roadmap = [
               {
                 id: '5',
                 type: RoadmapItemType.Topic,
-                content: [{ displayText: 'Topic 2', link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&themeRefresh=1' }],
+                content: [
+                  { displayText: 'Topic 2', link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&themeRefresh=1' },
+                ],
                 metadata: {
                   priority: 'minor',
                   contentType: 'article',
@@ -114,7 +119,9 @@ const mock: Roadmap = [
               {
                 id: '7',
                 type: RoadmapItemType.Topic,
-                content: [{ displayText: 'Topic 3', link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&themeRefresh=1' }],
+                content: [
+                  { displayText: 'Topic 3', link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&themeRefresh=1' },
+                ],
                 metadata: {
                   priority: 'critical',
                   contentType: 'video',

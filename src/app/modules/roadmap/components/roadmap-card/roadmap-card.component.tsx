@@ -1,9 +1,9 @@
 import { Fragment, JSX } from 'preact';
 
-import { CheckboxComponent } from '@shared-components/checkbox/checkbox.component';
+import { Checkbox } from '@shared-components/checkbox/checkbox.component';
 import { CardComponent } from '@shared-components/card/card.component';
-
 import { LazyImage } from '@shared-components/lazy-image/lazy-image.component';
+
 import { RoadmapMilestone } from '../roadmap-milestone/roadmap-milestone.component';
 import { RoadmapItemType } from '../../typings/roadmap-item-type.enum';
 import { RoadmapSection } from '../../typings/topics-section.type';
@@ -40,9 +40,15 @@ export function RoadmapCard({ section, checkTopic }: RoadmapCardProps): JSX.Elem
 
     const topic: Topic = item;
     return (
-      <CheckboxComponent key={topic.id} checked={topic.done} onChange={(done: boolean) => checkTopic(topic.id, done)}>
-        {topic.displayText}
-      </CheckboxComponent>
+      <Checkbox
+        key={topic.id}
+        label={topic.displayText}
+        checked={topic.done}
+        onChange={(e) => {
+          const target = e.target as HTMLInputElement;
+          checkTopic(topic.id, target.checked);
+        }}
+      />
     );
   });
 
