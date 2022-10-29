@@ -1,4 +1,4 @@
-import { TypedBy } from '@typings/utility-types/typed-by.type';
+import { TypedBy } from '@interfaces/utility-types/typed-by.type';
 import { RoadmapItemType } from './roadmap-item-type.enum';
 
 export interface Milestone extends TypedBy<RoadmapItemType> {

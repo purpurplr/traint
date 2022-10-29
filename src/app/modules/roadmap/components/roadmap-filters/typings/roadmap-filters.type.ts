@@ -1,4 +1,4 @@
-import { ContentType, Language } from '@typings/new-interfaces';
+import { ContentType, Language } from '@interfaces/new-interfaces';
 
 export type FilterValue = Language | ContentType;
 

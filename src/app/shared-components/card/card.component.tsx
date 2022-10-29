@@ -1,11 +1,11 @@
 import './card.component.scss';
-
-import { ComponentChild, JSX } from 'preact';
+import { ReactNode } from 'react';
 
 export interface CardComponentProps {
-  header: ComponentChild;
-  body: ComponentChild;
+  header: ReactNode;
+  body: ReactNode;
 }
+
 export const CardComponent = ({ header, body }: CardComponentProps): JSX.Element => (
   <article className="card">
     <header className="card__header">{header}</header>

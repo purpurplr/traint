@@ -1,5 +1,3 @@
-import { Fragment, JSX } from 'preact';
-
 import { Checkbox } from '@shared-components/checkbox/checkbox.component';
 import { CardComponent } from '@shared-components/card/card.component';
 import { LazyImage } from '@shared-components/lazy-image/lazy-image.component';
@@ -44,19 +42,16 @@ export function RoadmapCard({ section, checkTopic }: RoadmapCardProps): JSX.Elem
         key={topic.id}
         label={topic.displayText}
         checked={topic.done}
-        onChange={(e) => {
-          const target = e.target as HTMLInputElement;
-          checkTopic(topic.id, target.checked);
-        }}
+        onChange={({ target }) => checkTopic(topic.id, target.checked)}
       />
     );
   });
 
   const cardBody: JSX.Element = (
-    <Fragment>
+    <>
       {links && <div className="topics-card__links">{links}</div>}
       {<div>{topics}</div>}
-    </Fragment>
+    </>
   );
 
   return <CardComponent header={cardHeader} body={cardBody} />;

@@ -1,4 +1,4 @@
-import { Topic } from '@roadmap/typings/topic.type';
-import { Milestone } from '@roadmap/typings/milestone.type';
+import { Topic } from './topic.type';
+import { Milestone } from './milestone.type';
 
 export type RoadmapSectionItem = Topic | Milestone;

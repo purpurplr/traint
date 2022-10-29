@@ -1,5 +1,3 @@
-import { JSX } from 'preact';
-
 import BadgeIcon from '@assets/icons/badge.svg';
 
 import { Milestone } from '../../typings/milestone.type';
@@ -14,7 +12,9 @@ export interface RoadmapAchievementProps {
 export const RoadmapMilestone = ({ achievement }: RoadmapAchievementProps): JSX.Element => (
   <article className="roadmap-milestone">
     <div className="roadmap-milestone__message">
-      <BadgeIcon className="roadmap-milestone__badge" />
+      <div className="roadmap-milestone__badge">
+        <BadgeIcon />
+      </div>
       <span className="roadmap-milestone__text">{achievement.displayText}</span>
     </div>
 

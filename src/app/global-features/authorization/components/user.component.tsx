@@ -1,7 +1,7 @@
 import './user.component.scss';
 
-import { IconButton } from '@material-ui/core';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import { IconButton } from '@mui/material';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 export const User = (): JSX.Element => {
   return (

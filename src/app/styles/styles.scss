@@ -1,5 +1,5 @@
-@use './variables/colors';
-@use './for-screen';
+@use 'variables/colors';
+@use 'for-screen';
 
 html {
   font-size: 17px;
@@ -17,14 +17,14 @@ body {
   }
 }
 
-.theme-root {
+body {
   background-color: var(--color-background);
 }
 
-.theme-root,
-.theme-root *,
-.theme-root *::before,
-.theme-root *::after {
+.body,
+.body *,
+.body *::before,
+.body *::after {
   transition-property: background-color, color, box-shadow;
   transition-duration: 0.15s;
 }

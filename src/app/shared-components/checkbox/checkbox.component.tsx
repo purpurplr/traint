@@ -1,15 +1,13 @@
 import './checkbox.component.scss';
-
-import { VNode } from 'preact';
-import { JSXInternal } from 'preact/src/jsx';
+import { ChangeEventHandler, ReactNode } from 'react';
 
 interface CheckboxProps {
   value?: string;
   name?: string;
-  label?: VNode | string;
+  label?: ReactNode;
   checked?: boolean;
   // TODO 'onChange' typing
-  onChange?: (e: JSXInternal.TargetedEvent<HTMLInputElement>) => void;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 export const Checkbox = ({ name, value, label, checked, onChange }: CheckboxProps): JSX.Element => {

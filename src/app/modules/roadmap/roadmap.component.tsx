@@ -1,5 +1,4 @@
-import { JSX } from 'preact';
-import { useEffect, useState } from 'preact/hooks';
+import { useEffect, useState } from 'react';
 
 import { SpinnerComponent } from '@shared-components/spinner/spinner.component';
 import { curry } from '@utils/curry.util';
@@ -10,15 +9,13 @@ import { roadmapApiService } from './services/roadmap-api.service';
 import { RoadmapSection } from './typings/topics-section.type';
 import { RoadmapItemType } from './typings/roadmap-item-type.enum';
 import { Milestone } from './typings/milestone.type';
-import { useRoadmapState } from './hooks/use-roadmap.hook';
+import { useRoadmapState } from './hooks/roadmap-state.hook';
 
 import './roadmap.component.scss';
 
-export function RoadmapComponent({ path }: { path: string }): JSX.Element {
+export function RoadmapComponent(): JSX.Element {
   const [loading, setLoading] = useState(false);
   const { roadmap, setRoadmap, setTopicStatus } = useRoadmapState();
-
-  const isTreeView: boolean = path === 'tree';
 
   const checkTopic = curry(setTopicStatus);
 

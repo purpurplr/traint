@@ -1,11 +1,9 @@
-import { HTMLAttributes } from 'preact/compat';
-import { JSX } from 'preact';
-import { useLayoutEffect, useState } from 'preact/hooks';
 import clsx from 'clsx';
+import { ImgHTMLAttributes, useLayoutEffect, useState } from 'react';
 
 import './lazy-image.component.scss';
 
-export function LazyImage(props: HTMLAttributes<HTMLImageElement>): JSX.Element | null {
+export function LazyImage(props: ImgHTMLAttributes<HTMLImageElement>): JSX.Element | null {
   const [loading, setLoading] = useState(false);
 
   useLayoutEffect(() => {

@@ -15,12 +15,16 @@ function assignThemeByConfig(theme: ThemeConfig): void {
   palettes.forEach((palette) => assignPalette(palette));
 }
 
+function isPreferedColorSchemeDark(): boolean {
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
 function detectBrowserTheme(): ThemeName {
-  const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  return isDark ? ThemeName.Dark : ThemeName.Light
+  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  return isDark ? ThemeName.Dark : ThemeName.Light;
 }
 
 export const themeService = {
   assignThemeByConfig,
-  detectBrowserTheme
+  detectBrowserTheme,
 };

@@ -1,19 +1,18 @@
 import './collapse.component.scss';
 
-import { ComponentChildren, JSX } from 'preact';
-import { useEffect, useRef, useState } from 'preact/hooks';
 import clsx from 'clsx';
 
 import ArrowIcon from '@assets/icons/arrow.svg';
 import { resolveRenderable } from '@utils/react/resolve-renderable.util';
-import { Renderable } from '@typings/react/renderable.type';
+import { Renderable } from '@interfaces/react/renderable.type';
+import { Children, ReactNode, useEffect, useRef, useState } from 'react';
 
 interface CollapseProps {
   isOpen?: boolean;
   header: Renderable<boolean>;
   expandIcon?: JSX.Element;
   expandIconPosition?: 'start' | 'end';
-  children: ComponentChildren;
+  children: ReactNode[];
 }
 
 export function Collapse({
@@ -46,7 +45,11 @@ export function Collapse({
         onClick={toggleExpand}
       >
         <span className={clsx('collapse__expand-icon', { 'collapse__expand-icon_rotated': isExpanded })}>
-          {expandIcon ?? <ArrowIcon className="default-arrow-icon" />}
+          {expandIcon ?? (
+            <div className="default-arrow-icon">
+              <ArrowIcon />
+            </div>
+          )}
         </span>
         <div className="header__content">{resolveRenderable(header, isExpanded)}</div>
       </header>

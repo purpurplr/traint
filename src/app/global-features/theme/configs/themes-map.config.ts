@@ -4,5 +4,5 @@ import { LIGHT_THEME_CONFIG } from '@global-features/theme/configs/light-theme.c
 
 export const THEME_CONFIG_MAP = {
   [ThemeName.Dark]: DARK_THEME_CONFIG,
-  [ThemeName.Light]: LIGHT_THEME_CONFIG
-}
+  [ThemeName.Light]: LIGHT_THEME_CONFIG,
+};
