@@ -12,6 +12,7 @@
     "lint:fix": "npx eslint ./src/**/*.ts{,x} --fix"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.10.9",
