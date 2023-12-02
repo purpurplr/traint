@@ -6,7 +6,7 @@ interface Environment {
     templateId: string;
     serviceId: string;
     publicKey: string;
-  }
+  };
 }
 
 export const env: Environment = {

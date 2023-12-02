@@ -1,6 +1,7 @@
 import { env } from 'environment';
 
-import * as React from 'react';
+import { useState } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
 
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 
@@ -18,21 +19,16 @@ import { Loader } from '@shared-components/loader/loader.component';
 import { SnackBarComponent } from '@shared-components/snackbar/snackbar.component';
 
 interface EmailJS {
-  send: (serviceID: string, templateID: string, templatePrams?: Record<string, unknown> | undefined, publicKey?: string | undefined) => Promise<EmailJSResponseStatus>;
+  send: (serviceID: string, templateID: string, templatePrams?: Record<string, unknown>, publicKey?: string) => Promise<EmailJSResponseStatus>;
 }
 
 export const ContactUs = (): JSX.Element =>  {
-  const [state, setState] = React.useState({
-    modalOpen: false,
-    snackBarOpen: false,
-    loading: false,
-    isEmailSentError: false,
-    email: '',
-    emailTouched: false,
-    message: '',
-    messageTouched: false,
-  });
-  const { modalOpen, snackBarOpen, loading, isEmailSentError, email, message, messageTouched, emailTouched } = state;
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [snackBarOpen, setSnackBarOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [isEmailSentError, setIsEmailSentError] = useState(false);
 
   const successMessage = 'Ваше письмо отправлено! Мы свяжемся с вами в ближайшее время.';
   const errorMessage = 'Что-то пошло не так. Попробуйте позже.';
@@ -42,51 +38,40 @@ export const ContactUs = (): JSX.Element =>  {
   const modalHeader = 'Связаться с нами';
   const modalText = 'Если у вас есть вопросы или предложения, напишите нам.';
 
-  const defaultLoadingState = {
-    snackBarOpen: true,
-    loading: false,
-    modalOpen: false,
-  }
-
-  const isSubmitButtonDisabled = (): boolean => {
-    return email === '' || message === '' || loading;
-  }
-
-  const isEmailInvalid = (): boolean => {
-    return email === '' && emailTouched;
-  }
-
-  const isMessageInvalid = (): boolean => {
-    return message === '' && messageTouched;
-  }
-
   const handleModalClick = (open: boolean) => () => {
-    setState({ ...state, modalOpen: open });
+    setModalOpen(open);
   }
 
   const handleSnackBarClick = (open: boolean) => () => {
-    setState({ ...state, snackBarOpen: open });
+    setSnackBarOpen(open);
   }
 
-  const sendEmail = (): void => {
-    setState({ ...state, loading: true });
-    (emailjs as EmailJS).send(
+  const setDefaultLoadingState = (): void => {
+    setSnackBarOpen(true);
+    setLoading(false);
+    setModalOpen(false);
+  }
+
+  const sendEmail = async (data: FieldValues): Promise<void> => {
+    setLoading(true);
+    await (emailjs as EmailJS).send(
       env.contactUs.serviceId,
       env.contactUs.templateId,
-      { email, message },
+      { email: data.name, message: data.message },
       env.contactUs.publicKey,
-    )
-      .then(() => {
-        setState({ ...state, ...defaultLoadingState, isEmailSentError: false });
+    ).then(() => {
+        setDefaultLoadingState();
+        setIsEmailSentError(false);
       }, () => {
-        setState({ ...state, ...defaultLoadingState, isEmailSentError: true });
+        setDefaultLoadingState();
+        setIsEmailSentError(true);
       });
   };
 
   return (
-    <React.Fragment>
+    <>
       <IconButton aria-label="Contact Us" onClick={handleModalClick(true)}>
-        <QuestionMarkIcon className="contact-us__icon" />
+        <QuestionMarkIcon className="filters__icon" />
       </IconButton>
       <Dialog open={modalOpen} onClose={handleModalClick(true)}>
         <DialogTitle>{modalHeader}</DialogTitle>
@@ -94,45 +79,37 @@ export const ContactUs = (): JSX.Element =>  {
           <DialogContentText>
             {modalText}
           </DialogContentText>
-          <form>
+          <form onSubmit={handleSubmit(sendEmail)}>
             <TextField
+              {...register("name", { required: true })}
               margin="dense"
               id="name"
               name="name"
               label="Ваш Email"
-              type="email"
               fullWidth
-              required={true}
-              error={isEmailInvalid()}
-              helperText={isEmailInvalid() ? errorValidationMessage : ''}
               variant="standard"
-              value={email}
-              onChange={(e) => setState({ ...state, email: e.target.value, emailTouched: true })}
             />
+            <span className="form-control-error">{errors.name && errorValidationMessage}</span>
             <TextField
+              {...register("message", { required: true })}
               margin="dense"
               id="message"
-              label="Сообщение"
               name="message"
-              type="text"
+              label="Сообщение"
               fullWidth
-              required={true}
-              error={isMessageInvalid()}
-              helperText={isMessageInvalid() ? errorValidationMessage : ''}
               variant="standard"
-              value={message}
-              onChange={(e) => setState({ ...state, message: e.target.value, messageTouched: true })}
             />
+            <span className="form-control-error">{errors.message && errorValidationMessage}</span>
+            <DialogActions>
+              <Button onClick={handleModalClick(false)}>{cancelButtonLabel}</Button>
+              <Button disabled={loading} type='submit'>{
+                loading
+                  ? <><Loader /> <span className="contact-us__send-label">{sendButtonLabel}</span></>
+                  : <>{sendButtonLabel}</>
+              }</Button>
+            </DialogActions>
           </form>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleModalClick(false)}>{cancelButtonLabel}</Button>
-          <Button disabled={isSubmitButtonDisabled()} onClick={sendEmail}>{
-            loading
-              ? <><Loader /> <span className="contact-us__send-label">{sendButtonLabel}</span></>
-              : <>{sendButtonLabel}</>
-          }</Button>
-        </DialogActions>
       </Dialog>
       {
         <SnackBarComponent onClose={handleSnackBarClick(false)}
@@ -140,10 +117,10 @@ export const ContactUs = (): JSX.Element =>  {
                            vertical={'top'}
                            horizontal={'center'}
                            severity={isEmailSentError ? 'error' : 'success'}
-                           message={ isEmailSentError ? errorMessage : successMessage }
-                           autoHideDuration={1000}
+                           message={isEmailSentError ? errorMessage : successMessage}
+                           autoHideDuration={3000}
         />
       }
-    </React.Fragment>
+    </>
   );
 }

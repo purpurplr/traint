@@ -141,6 +141,11 @@
     ],
     "@typescript-eslint/no-empty-function": [
       "off"
-    ]
+    ],
+    "@typescript-eslint/no-misused-promises": ["warn", {
+      "checksVoidReturn": {
+        "attributes": false
+      }
+    }]
   }
 }

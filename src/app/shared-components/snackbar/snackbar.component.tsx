@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Alert, Snackbar } from '@mui/material';
 
 interface SnackBarComponentProps {

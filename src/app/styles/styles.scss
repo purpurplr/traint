@@ -59,5 +59,13 @@ body {
   }
 }
 
+.form-control-error {
+  color: var(--color-error);
+  font-size: 14px;
+  @include for-screen.mobile {
+    font-size: 10px;
+  }
+}
+
 // TODO стили починить
 // TODO норм темную тему
