@@ -5,8 +5,8 @@ import { THEME_CONFIG_MAP } from '@global-features/theme/configs/themes-map.conf
 import { LocalStorageKeys } from '@interfaces/local-storage-keys.enum';
 import { useEffect } from 'react';
 
-import { themeService } from './theme.service';
 import { StateUpdaterType } from '@interfaces/react/state-updater.type';
+import { themeService } from './theme.service';
 
 interface ThemeAttributes {
   theme: ThemeName;
