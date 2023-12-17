@@ -1,5 +1,10 @@
 export type Language = 'eng' | 'ru';
 export type ContentType = 'article' | 'video';
+export enum Level {
+  Easy = 'easy',
+  Hard = 'hard',
+}
+
 type Priority = 'minor' | 'medium' | 'critical';
 type TopicRating = 1 | 2 | 3 | 4 | 5;
 

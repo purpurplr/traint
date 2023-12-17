@@ -1,12 +1,17 @@
 import { Roadmap, RoadmapItem } from '@modules/roadmap/typings/roadmap.type';
-import { DenormalizedTopicProgress, TopicProgress } from '@modules/roadmap/typings/topic-progress.type';
+import {
+  DenormalizedHardTopicVisibility,
+  DenormalizedTopicProgress,
+  TopicProgress,
+} from '@modules/roadmap/typings/topic-progress.type';
 import { RoadmapItemType } from '@modules/roadmap/typings/roadmap-item-type.enum';
 import { RoadmapSectionItem } from '@modules/roadmap/typings/roadmap-section-item.type';
+import { HardTopicsVisibility } from '@modules/roadmap/typings/hard-topics-visibility.type';
 
 export interface ProgressAdapter {
   denormalizedProgress: DenormalizedTopicProgress;
   getProgressFor: (sectionId: string, topicId: string) => TopicProgress | undefined;
-  actualizeRoadmap: (roadmap: Roadmap) => Roadmap;
+  actualizeRoadmap: (roadmap: Roadmap, hardTopicsVisibility: HardTopicsVisibility[]) => Roadmap;
 }
 
 function denormalizeProgress(progress: TopicProgress[]): DenormalizedTopicProgress {
@@ -17,8 +22,21 @@ function denormalizeProgress(progress: TopicProgress[]): DenormalizedTopicProgre
   }, {});
 }
 
-export function progressAdapter(progress: TopicProgress[]): ProgressAdapter {
+function denormalizeHardTopicsVisibility(
+  hardTopicsVisibility: HardTopicsVisibility[],
+): DenormalizedHardTopicVisibility {
+  return hardTopicsVisibility.reduce((acc: DenormalizedHardTopicVisibility, visibility: HardTopicsVisibility) => {
+    acc[visibility.sectionId] = { expanded: visibility.expanded };
+    return acc;
+  }, {});
+}
+
+export function progressAdapter(
+  progress: TopicProgress[],
+  hardTopicsVisibility: HardTopicsVisibility[],
+): ProgressAdapter {
   const denormalizedProgress = denormalizeProgress(progress);
+  const denormalizedHardTopicsVisibility = denormalizeHardTopicsVisibility(hardTopicsVisibility);
 
   function getProgressFor(sectionId: string, topicId: string): TopicProgress | undefined {
     return denormalizedProgress[sectionId]?.[topicId];
@@ -32,8 +50,9 @@ export function progressAdapter(progress: TopicProgress[]): ProgressAdapter {
 
   const actualizeRoadmapSection = (section: RoadmapItem): RoadmapItem => {
     if (section.type !== RoadmapItemType.Section) return section;
+    const expanded = denormalizedHardTopicsVisibility[section.id]?.expanded;
     const items = section.items.map((item) => actualizeRoadmapTopic(section.id, item));
-    return { ...section, items };
+    return { ...section, expanded, items };
   };
 
   const actualizeRoadmap = (roadmap: Roadmap): Roadmap => {

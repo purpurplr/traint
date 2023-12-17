@@ -1,5 +1,24 @@
 @use 'src/app/styles/for-screen';
 
+.roadmap-card__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topics-card__icon {
+  scale: 0.9;
+  cursor: pointer;
+}
+
+.topics-card__icon-hard {
+  color: var(--color-error);
+}
+
+.topics-card__icon-easy {
+  color: var(--color-success);
+}
+
 .roadmap-card__header {
   display: flex;
   align-items: center;
