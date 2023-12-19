@@ -14,4 +14,5 @@ export interface RoadmapSection extends TypedBy<RoadmapItemType> {
   learningResources?: LearningResource[];
   items: (Topic | Milestone)[];
   optional?: boolean;
+  expanded?: boolean;
 }

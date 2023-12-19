@@ -15,9 +15,10 @@ import './roadmap.component.scss';
 
 export function RoadmapComponent(): JSX.Element {
   const [loading, setLoading] = useState(false);
-  const { roadmap, setRoadmap, setTopicStatus } = useRoadmapState();
+  const { roadmap, setRoadmap, setTopicStatus, setHardTopicVisibility } = useRoadmapState();
 
   const checkTopic = curry(setTopicStatus);
+  const expandHardTopics = curry(setHardTopicVisibility);
 
   useEffect(() => {
     setLoading(true);
@@ -40,7 +41,7 @@ export function RoadmapComponent(): JSX.Element {
 
     return (
       <div className="roadmap__card" key={section.id}>
-        <RoadmapCard section={section} checkTopic={checkTopic(section.id)} />
+        <RoadmapCard section={section} checkTopic={checkTopic(section.id)} expandHardTopics={expandHardTopics(section.id)} />
       </div>
     );
   });
