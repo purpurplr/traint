@@ -6,5 +6,5 @@ import { visualizer } from 'rollup-plugin-visualizer';
 
 export default defineConfig({
   plugins: [svgr({ exportAsDefault: true }), react(), tsconfigPaths(), visualizer()],
-  base: '/traint',
+  base: '/traint/',
 });
