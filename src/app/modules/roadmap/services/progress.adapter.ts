@@ -17,6 +17,7 @@ export interface ProgressAdapter {
 function denormalizeProgress(progress: TopicProgress[]): DenormalizedTopicProgress {
   return progress.reduce((acc: DenormalizedTopicProgress, topic: TopicProgress) => {
     const section = acc[topic.sectionId] ?? {};
+    // @ts-ignore
     acc[topic.sectionId] = { ...section, [topic.id]: topic };
     return acc;
   }, {});
