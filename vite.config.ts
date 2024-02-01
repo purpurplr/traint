@@ -4,7 +4,9 @@ import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { visualizer } from 'rollup-plugin-visualizer';
 
-export default defineConfig({
-  plugins: [svgr({ exportAsDefault: true }), react(), tsconfigPaths(), visualizer()],
-  base: '/traint/',
+export default defineConfig(({ command, mode }) => {
+  return {
+    plugins: [svgr({ exportAsDefault: true }), react(), tsconfigPaths(), visualizer()],
+    base: 'traint', // gh-pages base path
+  };
 });

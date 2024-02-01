@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "prettier:fix": "npx prettier -w ./src/**/*.{scss,ts,tsx}",
     "lint": "npx eslint ./src/**/*.ts{,x}",
-    "lint:fix": "npx eslint ./src/**/*.ts{,x} --fix"
+    "lint:fix": "npx eslint ./src/**/*.ts{,x} --fix",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
@@ -36,6 +38,7 @@
     "eslint-plugin-autofix": "^1.1.0",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-react": "^7.30.1",
+    "gh-pages": "^6.1.1",
     "prettier": "^2.7.1",
     "rollup-plugin-analyzer": "^4.0.0",
     "rollup-plugin-visualizer": "^5.8.3",

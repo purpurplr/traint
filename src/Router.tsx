@@ -9,6 +9,6 @@ const router = createBrowserRouter([
     element: <App />,
     children: [{ path: '/', element: <RoadmapComponent /> }],
   },
-]);
+], {basename: '/traint/'});
 
 export const Router: FC = () => <RouterProvider router={router} />;
